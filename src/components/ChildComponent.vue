@@ -1,6 +1,6 @@
 <template>
-  <div id="childComponent">
-    <richtext>
+  <div id="childComponent" style="background-color: #42b983">
+    <richtext >
       this is child component
     </richtext>
     <br/>
@@ -15,10 +15,6 @@
       return {
         childMsg: "This is child component"
       }
-    },
-    created() {
-    },
-    mounted() {
     },
     methods: {
       receiveMsgFromParent: function (msg) {

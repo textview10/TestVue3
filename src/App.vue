@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" style="background-color: brown">
     <ChildComponent ref="child"></ChildComponent>
-    <richtext>{{richtext}}</richtext>
+    <richtext >{{richtext}}</richtext>
   </div>
 </template>
 
@@ -26,7 +26,7 @@
   }
 
   window["receiveMsgFromNative"] = function (msg) {
-    globalVue.richtext = "parent receive msg from Android qqx5 webview = " + msg;
+    globalVue.richtext = "parent receive msg from Android  webview = " + msg;
     globalVue.$refs.child.receiveMsgFromParent(msg);
   }
 //  window["receiveMsgFromNative"] = function () {
