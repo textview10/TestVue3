@@ -1,10 +1,8 @@
 <template>
   <div id="childComponent" style="background-color: #42b983">
-    <richtext >
-      this is child component
-    </richtext>
+    <div>{{childMsg}}</div>
     <br/>
-    <button>{{childMsg}}</button>
+    <button @click="toSecondComponent">去第二个界面</button>
   </div>
 </template>
 
@@ -18,8 +16,15 @@
     },
     methods: {
       receiveMsgFromParent: function (msg) {
+        alert("" + msg);
         this.childMsg = "receive msg = " + msg;
+      },
+      toSecondComponent: function () {
+        this.$router.replace({path: "/SecondComponent"});
       }
+    },
+    created() {
+      this.$parent.setComponent(this);
     }
   }
 </script>

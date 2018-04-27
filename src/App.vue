@@ -1,14 +1,15 @@
 <template>
   <div id="app" style="background-color: brown">
-    <ChildComponent ref="child"></ChildComponent>
-    <richtext >{{richtext}}</richtext>
+    <div></div>
+
+    <router-view/>
   </div>
 </template>
 
 <script>
   import ChildComponent from "./components/ChildComponent.vue";
 
-  var globalVue;
+  var curComponent;
   export default {
     name: 'App',
     components: {
@@ -19,21 +20,19 @@
         richtext: "App.vue receive msg"
       }
     },
-    methods: {},
+    methods: {
+      setComponent: function (component) {
+        curComponent = component;
+      }
+    },
     created() {
-      globalVue = this;
+      this.$router.push({path: "ChildComponent"});
     },
   }
 
   window["receiveMsgFromNative"] = function (msg) {
-    globalVue.richtext = "parent receive msg from Android  webview = " + msg;
-    globalVue.$refs.child.receiveMsgFromParent(msg);
+    curComponent.receiveMsgFromParent(msg);
   }
-//  window["receiveMsgFromNative"] = function () {
-//    var msg = "native webview";
-//    globalVue.richtext = "parent receive msg from Android native webview = " + msg;
-//    globalVue.$refs.child.receiveMsgFromParent(msg);
-//  }
 </script>
 <style>
   #app {
